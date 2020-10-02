@@ -2,6 +2,8 @@ import React, { useState, useCallback } from 'react';
 import { Form, Input, Button } from 'antd';
 import Link from 'next/link'; //라우터 역할
 import styled from 'styled-components';
+import PropTypes from 'prop-types'
+import useInput from '../hooks/useInput';
 
 // div컴포넌트이면서, ``태그안의 css가 적용되어진, Buttonwrapper라는 컴포넌트를 만든다.
 const ButtonWrapper = styled.div`
@@ -15,16 +17,8 @@ const FormWrapper = styled(Form)`
 
 
 const LoginForm = ({ setIsLoggedIn }) => {
-    const [id, setId] = useState('');
-    const [password, setPassword] = useState('');
-
-    const onChangeId = useCallback((e) => {
-        setId(e.target.value);
-    }, []);
-
-    const onChangePassword = useCallback((e) => {
-        setPassword (e.target.value);
-    }, []);
+    const [id, onChangeId] = useInput('');
+    const [password, onChangePassword] = useInput('');
 
     const onSubmitForm = useCallback(() => {
         console.log(id, password);
@@ -57,5 +51,9 @@ const LoginForm = ({ setIsLoggedIn }) => {
         </FormWrapper>
     );
 }
+
+LoginForm.propTypes = {
+    setIsLoggedIn: PropTypes.func.isRequired,
+};
 
 export default LoginForm;

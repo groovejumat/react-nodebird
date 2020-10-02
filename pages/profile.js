@@ -1,8 +1,12 @@
 import React from 'react'; // 해도 되고 안해두 된다. 알아서 처리해 줌.
 import Head from 'next/head'
 import AppLayout from '../components/AppLayout';
+import NicknameEditForm from "../components/NicknameEditForm";
+import FollowList from "../components/FollowList";
 
 const Profile = () => {
+    const followerList = [{ nickname: '제로초'},{ nickname: '느그'},{ nickname: '에미'}];
+    const followingList = [{ nickname: '제로초'},{ nickname: '느그'},{ nickname: '에미'}];
     return (
       <>
             <Head>
