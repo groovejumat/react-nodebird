@@ -4,6 +4,10 @@ import Link from 'next/link'; //라우터 역할
 import styled from 'styled-components';
 import PropTypes from 'prop-types'
 import useInput from '../hooks/useInput';
+import { useDispatch } from 'react-redux';
+
+// reducer에서 만든 로그인 액션 크리에이터를 불러와서 dispatch해준다
+import { loginAction } from '../reducers';
 
 // div컴포넌트이면서, ``태그안의 css가 적용되어진, Buttonwrapper라는 컴포넌트를 만든다.
 const ButtonWrapper = styled.div`
@@ -16,13 +20,14 @@ const FormWrapper = styled(Form)`
 `;
 
 
-const LoginForm = ({ setIsLoggedIn }) => {
+const LoginForm = () => {
+    const dispatch = useDispatch();
     const [id, onChangeId] = useInput('');
     const [password, onChangePassword] = useInput('');
 
     const onSubmitForm = useCallback(() => {
         console.log(id, password);
-        setIsLoggedIn(true);
+        dispatch(loginAction({ id, password }));
     }, [id, password]);
 
     return (
@@ -52,8 +57,5 @@ const LoginForm = ({ setIsLoggedIn }) => {
     );
 }
 
-LoginForm.propTypes = {
-    setIsLoggedIn: PropTypes.func.isRequired,
-};
 
 export default LoginForm;

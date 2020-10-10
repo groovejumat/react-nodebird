@@ -1,9 +1,14 @@
 import React, { useCallback } from 'react';
 import { Card,Avatar,Button } from 'antd'; //리엑트에서 나온 카드 컴포넌트
+import { useDispatch } from 'react-redux';
 
-const UserProfile = ({ setIsLoggedIn }) => { //setIsLoggedIn값을 받아오고 나서,
+import { logoutAction } from '../reducers';
+
+const UserProfile = () => {
+    const dispatch = useDispatch();
+
     const onLogOut = useCallback(() => {
-        setIsLoggedIn(false);
+        dispatch(logoutAction());
     }, []);
     return (
         <Card
