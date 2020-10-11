@@ -43,7 +43,7 @@ const AppLayout = ({children}) => {
             <Row gutter={8}>
                 {/* 가로 24칸 xs에 대해서 md가 차지하는 범위 */}
                 <Col xs={24} md={6}>
-                    setIsLoggedIn usestate를 LoginForm으로 던져준다
+                    {/* setIsLoggedIn usestate를 LoginForm으로 던져준다 */}
                     {/* {isloggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn}/> : <LoginForm setIsLoggedIn={setIsLoggedIn}/>} */}
                     {isloggedIn ? <UserProfile /> : <LoginForm />}
                 </Col>

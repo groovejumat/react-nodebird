@@ -7,7 +7,7 @@ import useInput from '../hooks/useInput';
 import { useDispatch } from 'react-redux';
 
 // reducer에서 만든 로그인 액션 크리에이터를 불러와서 dispatch해준다
-import { loginAction } from '../reducers';
+import { loginAction } from '../reducers/user';
 
 // div컴포넌트이면서, ``태그안의 css가 적용되어진, Buttonwrapper라는 컴포넌트를 만든다.
 const ButtonWrapper = styled.div`
