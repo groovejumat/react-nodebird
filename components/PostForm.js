@@ -1,6 +1,6 @@
 //antd에서 Form불러와서 만들어 준다
 import { Form, Input, Button } from 'antd';
-import  React, { useCallback, useState } from 'react';
+import  React, { useCallback, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../reducers/post';
 
@@ -8,6 +8,8 @@ const PostForm = () => {
     const { imagePaths } = useSelector((state) => state.post);
     //만들어 놓은 액션을 실행하기 위한 dispatch
     const dispatch = useDispatch();
+    //실제 리엑트 돔에 접근하기 위해서 사용한다
+    const imageInput = useRef();
     const [text, setText] = useState('');
     const onChangeText = useCallback((e) => {
         setText(e.target.value);
@@ -15,8 +17,16 @@ const PostForm = () => {
 
     const onSubmit = useCallback(() => {
         // 액션은 객체 그리고 동적으로 데이터를 다루어야 할 때는 액션크리에이트를 만들어 줘야 한다
-        dispatch(addPost)
+        dispatch(addPost);
+        setText('');
     },[]);
+
+
+    const onClickImageUpload = useCallback(() => {
+        imageInput.current.click();
+    },[imageInput.current]);
+
+
     return (
         //처음에는 내부에 style을 적용시켜두 된다. (이를 inline styling이라고 한다) 따로 빼는 작업은 성능에 문제가 확실히 보일경우에 하자 작업이 많아 지기 때문에
         <Form style={{ margin: '10px 0  20px'}} encType="multipart/form-data" onFinish={onSubmit}>
@@ -27,8 +37,8 @@ const PostForm = () => {
                 placeholder="what did you do today?"
             />
             <div>
-                <input type="file" multiple hidden />
-                <Button>이미지 업로드</Button>
+                <input type="file" multiple hidden ref={imageInput} />
+                <Button onClick={onClickImageUpload}>이미지 업로드</Button>
                 <Button type="primary" style={{ float : 'right'}} htmlType="submit">bird bird</Button>
             </div>
             <div>
