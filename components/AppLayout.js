@@ -13,8 +13,25 @@ import LoginForm from '../components/LoginForm';
 // react-redux를 활용하기 위해서 import
 import { useSelector } from 'react-redux';
 
+import { createGlobalStyle } from 'styled-components';
+
 const SearchInput = styled(Input.Search)`
     vertical-align: middle;
+`;
+
+const Global = createGlobalStyle`
+    .ant-row {
+        margin-right: 0 !important;
+        margint-left: 0 !important;
+    }
+
+    .ant-col:first-child {
+        padding-left: 0 !important;
+    }
+
+    .ant-col:last-child {
+        padding-right: 0 !important;
+    }
 `;
 
 const AppLayout = ({children}) => {
@@ -26,6 +43,7 @@ const AppLayout = ({children}) => {
 
     return (
         <div>
+            <Global/>
             <Menu mode="horizontal">
                 <Menu.Item>
                     <Link href="/"><a>node bird</a></Link>

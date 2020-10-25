@@ -10,8 +10,10 @@ export const initialState = {
         Images: [{
             src: 'https://images.unsplash.com/photo-1552767059-ce182ead6c1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
         },{
-            src: 'https://images.unsplash.com/photo-1552767059-ce182ead6c1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80'
-        },],
+            src: 'https://images.unsplash.com/photo-1601280474119-ebf63ea97d3c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=980&q=80'
+        },{
+            src: 'https://images.unsplash.com/photo-1603482011932-089d2b06ab18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=670&q=80'
+        }],
         Comments: [{
             User: {
                 nickname: 'nero'

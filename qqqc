@@ -1,0 +1,35 @@
+[33mcommit 0566fa05f517a589195731da198dffd84c4c2b1f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: tkjoo <groovejumat@naver.com>
+Date:   Wed Oct 21 22:15:32 2020 +0900
+
+    20201021 feat : postimage, comment were made
+
+[33mcommit 8f74f224c84925789be37ff267f1a9066ea3e938[m
+Author: tkjoo <groovejumat@naver.com>
+Date:   Fri Oct 16 22:23:34 2020 +0900
+
+    20201016 feat: postcard compoenent created
+
+[33mcommit 6df72a2a3286770ce39fb11034b429ed1b54616f[m
+Author: tkjoo <groovejumat@naver.com>
+Date:   Sun Oct 11 21:39:58 2020 +0900
+
+    20201011 post function with react-redux
+
+[33mcommit 717835b33fa75e3c62e0edf48f0a747327253e1b[m
+Author: tkjoo <groovejumat@naver.com>
+Date:   Sat Oct 10 21:49:55 2020 +0900
+
+    20201010 patch : change props to redux
+
+[33mcommit 74c22eff646f3a853e079e6539d850edb92228cf[m
+Author: tkjoo <groovejumat@naver.com>
+Date:   Fri Oct 2 20:33:19 2020 +0900
+
+    20201002
+
+[33mcommit 9080ee53251d80e6dcebcb8c6798c39b57de5eba[m
+Author: tkjoo <groovejumat@naver.com>
+Date:   Fri Oct 2 17:42:56 2020 +0900
+
+    20201002
