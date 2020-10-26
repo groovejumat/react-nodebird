@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Head from 'next/head'; //head부분을 수정 할 수 있는 next컴포넌트 입니다
 import 'antd/dist/antd.css'
 
+import withReduxSaga from 'next-redux-saga';
+
 import wrapper from '../store/configureStore';
 
 
@@ -25,4 +27,5 @@ NodeBird.propTypes = {
     Component: PropTypes.elementType.isRequired,
 }
 
-export default wrapper.withRedux(NodeBird);
+// reducer에서 만든 redux를 적용해줍니다.
+export default wrapper.withRedux(withReduxSaga(NodeBird));

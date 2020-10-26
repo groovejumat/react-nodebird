@@ -2,13 +2,24 @@
 import { createWrapper } from 'next-redux-wrapper';
 import { applyMiddleware, createStore, compose } from  'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'; 
+// redux-saga를 불러온다
+const
 
 // 만들어 놓은 recucer를 불러옵니다
-import reducer from '../reducers'
+import reducer from '../reducers';
+// rootSaga 만들기
+import rootSaga from '../sagas';
+
+// 미들웨어를 직접 만든다면? 고차함수
+const  loggerMiddleware = ({ dispatch, getState}) => (next) => (action) => {
+    console.log("loggerMiddleware : ",action);
+    return next(action);
+};
 
 // 일반 리덕스와 비슷하다
 const configureStore = () => {
-    const middlewares = [];
+    const sagaMiddleware = createSagaMiddleware();
+    const middlewares = [sagaMiddleware, loggerMiddleware];
 
     //리덕스 모듈을 설정해 준다. 이때, 개발용과 배포용을 기분해서 설정해 주도록 한다.
     const enhancer = process.env.NODE_ENV === 'production'
@@ -16,6 +27,7 @@ const configureStore = () => {
         //그리고 개발 모드일 때
         : composeWithDevTools(applyMiddleware(...middlewares    ))
     const store = createStore(reducer, enhancer);
+    store.sagaTask = sagaMiddleware.run(rootSaga);
     return store;
 };
 
