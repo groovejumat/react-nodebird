@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Head from 'next/head'; //head부분을 수정 할 수 있는 next컴포넌트 입니다
 import 'antd/dist/antd.css'
 
+// next와 redux-saga를 연결해주는 연습을 합니다
 import withReduxSaga from 'next-redux-saga';
 
 import wrapper from '../store/configureStore';

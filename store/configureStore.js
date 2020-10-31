@@ -3,7 +3,7 @@ import { createWrapper } from 'next-redux-wrapper';
 import { applyMiddleware, createStore, compose } from  'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'; 
 // redux-saga를 불러온다
-const
+import createSagaMiddleware from 'redux-devtools-extension';
 
 // 만들어 놓은 recucer를 불러옵니다
 import reducer from '../reducers';
@@ -27,6 +27,7 @@ const configureStore = () => {
         //그리고 개발 모드일 때
         : composeWithDevTools(applyMiddleware(...middlewares    ))
     const store = createStore(reducer, enhancer);
+    //rootsaga를 store.sagatask에 넣어준다
     store.sagaTask = sagaMiddleware.run(rootSaga);
     return store;
 };
