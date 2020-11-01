@@ -1,5 +1,8 @@
 export const initialState = {
+    isLoggingIn: false, // 로그인 시도 중
     isLoggedIn: false,
+    isLoggingOut: false, // 로그아웃 시도 중
+
     me:null,
     signUpData: {},
     loginData: {},
@@ -31,6 +34,7 @@ export const loginRequestAction = (data) => {
     }
 }
 
+/* ! SUCCESS 와 FAILURE에 대한 액션을 이제 saga에서 처리해 줌으로써 해당 액션을 직접 구현해 줄 필요가 없어졌다
 export const loginSuccessAction = (data) => {
     return {
         type: 'LOG_IN_SUCCESS',
@@ -43,7 +47,7 @@ export const loginFailureAction = (data) => {
         type: 'LOG_IN_FAILURE',
         data,
     }
-}
+} */
 
 
 //기존 액션 객체에서 thunk를 붙여 준다.
@@ -68,22 +72,56 @@ export const logoutRequestFailure = () => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'LOG_IN':
+        // 하나의 액션에 3가지 (요청, 성공, 실패)가 남는다
+        case 'LOG_IN_REQUEST':
+            // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
+            return {
+                ...state,
+                isLoggingIn: true,
+                me : action.data,
+            };
+        case 'LOG_IN_SUCCESS':
+            // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
+            return {
+                ...state,
+                isLoggingIn: true,
+                me : {...action.data, nickname : 'braum'},
+            };
+        case 'LOG_IN_FAILURE':
             // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
             return {
                 ...state,
                 isLoggedIn: true,
                 me : action.data,
             };
-        case 'LOG_OUT':
+
+
+        case 'LOG_OUT_REQUEST':
             // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
             return {
                 ...state,
+                isLoggingOut: true,
+                me:null,
+            };
+        case 'LOG_OUT_SUCCESS':
+            // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
+            return {
+                ...state,
+                isLoggingOut: false,
                 isLoggedIn: false,
                 me:null,
-            };        
+            };
+        case 'LOG_OUT_FAILURE':
+            // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
+            return {
+                ...state,
+                isLoggingOut: false,
+                isLoggedIn: false,
+                me:null,
+            };             
         default:
             return state;
+
     }
 };
 
