@@ -18,6 +18,7 @@ const UserProfile = () => {
                 <div key="twit">브라움 Q<br />0</div>,
                 <div key="followers">브라움 W<br />0</div>,
                 <div key="follower">브라움 E<br />0</div>,
+                <div key="follower">브라움 R<br />0</div>,
             ]}
         >
             <Card.Meta 

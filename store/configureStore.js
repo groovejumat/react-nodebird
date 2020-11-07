@@ -3,7 +3,7 @@ import { createWrapper } from 'next-redux-wrapper';
 import { applyMiddleware, createStore, compose } from  'redux';
 import { composeWithDevTools } from 'redux-devtools-extension'; 
 // redux-saga를 불러온다
-import createSagaMiddleware from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
 
 // 만들어 놓은 recucer를 불러옵니다
 import reducer from '../reducers';

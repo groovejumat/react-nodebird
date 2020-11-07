@@ -86,7 +86,7 @@ const PostCard = ({ post }) => {
 };
 
 //가지고 오는 proptypes의 검사 및 정의
-PostCard.PropTypes = {
+PostCard.propTypes = {
     post: PropTypes.shape({
         id: PropTypes.number,
         User: PropTypes.object,
