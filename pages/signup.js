@@ -2,16 +2,22 @@ import React, { useCallback, useState } from 'react'; // 해도 되고 안해두
 import Head from 'next/head';
 import { Form, Input, Checkbox, Button } from 'antd';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 
 import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
+import { SIGN_UP_REQUEST } from '../reducers/user';
 
 const ErrorMessage = styled.div`
     color: red;
 `;
 
 const Signup = () => {
-    const [id, onChangeId] = useInput('');
+    const dispatch = useDispatch();
+    // 이런식으로 편하게 리덕스에서 데이터를 끌어오는 것이 가능하다 이 부분이 익숙해 지는게 좋다.
+    const { signUpLoading } = useSelector((state) => state.user);
+
+    const [email, onChangeEmail] = useInput('');
     const [nickname, onChangeNickname] = useInput('');
     const [password, onChangePassword] = useInput('');
 
@@ -38,7 +44,11 @@ const Signup = () => {
         if (!term) {
             return setTermError(true);
         }
-        console.log(id, nickname, password)
+        console.log(email, nickname, password)
+        dispatch({
+            type: SIGN_UP_REQUEST,
+            data: { email, password, nickname },
+        })
     }, [password,passwordCheck,term]);
     return (
         <AppLayout>
@@ -48,9 +58,9 @@ const Signup = () => {
               </Head>
               <Form onFinish={onSubmit}>
                   <div> 
-                      <label htmlFor="user-id">id</label>
+                      <label htmlFor="user-email">이메일</label>
                       <br />
-                      <Input name="user-id" value={id} required onChange={onChangeId} />
+                      <Input name="user-email" type="email" value={email} required onChange={onChangeEmail} />
                   </div>
                   <div>
                       <label htmlFor="user-nick">nick</label>
@@ -79,7 +89,7 @@ const Signup = () => {
                       {termError && <ErrorMessage>I have to agree.</ErrorMessage>}
                   </div>
                   <div style={{ marginTop:10}}>
-                    <Button type="primary" htmlType="submit">sign up</Button>
+                    <Button type="primary" htmlType="submit" loading={signUpLoading}>sign up</Button>
                   </div>
               </Form>
         </AppLayout>  

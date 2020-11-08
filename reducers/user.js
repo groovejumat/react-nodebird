@@ -43,7 +43,7 @@ export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS';
 export const UNFOLLOW_FAILURE = 'UNFOLLOW_FAILURE';
 
 const dummyUser = (data) => ({
-    ...action.data,
+    ...data,
     nickname: 'suho',
     id: 1,
     // sequalizer에서 합쳐준다.
@@ -144,7 +144,7 @@ const reducer = (state = initialState, action) => {
                 logInError: action.error,
             };
 
-
+        // 로그 아웃 액션 처리
         case LOG_OUT_REQUEST:
             // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
             return {
@@ -168,7 +168,31 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 logOutLoading: false,
                 logOutError: action.error,
-            };             
+            };
+            
+        //SignUp
+        case SIGN_UP_REQUEST:
+            // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
+            return {
+                ...state,
+                signUpLoading: true,
+                signUpDone: false,
+                signUpError: null,
+            };
+        case SIGN_UP_SUCCESS:
+            // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
+            return {
+                ...state,
+                signUpLoading: false,
+                signUpDone: true,
+            };
+        case SIGN_UP_FAILURE:
+            // 새로운 객체를 리턴해준다. 이는 기록을 남기도록 하기 위해서!
+            return {
+                ...state,
+                signUpLoading: false,
+                signUpError: action.error,
+            };   
         default:
             return state;
 

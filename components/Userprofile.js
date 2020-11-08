@@ -6,7 +6,7 @@ import { logoutRequestAction } from '../reducers/user';
 
 const UserProfile = () => {
     const dispatch = useDispatch();
-    const { me, isLoggingOut } = useSelector((state) => state.user);
+    const { me, logOutLoading } = useSelector((state) => state.user);
 
     const onLogOut = useCallback(() => {
         dispatch(logoutRequestAction());
@@ -15,10 +15,9 @@ const UserProfile = () => {
         <Card
         // 리엑트에서 JSX에서 배열을 사용해야 하는경우에는 key지정이 필요하다.
             actions={[
-                <div key="twit">브라움 Q<br />0</div>,
-                <div key="followers">브라움 W<br />0</div>,
-                <div key="follower">브라움 E<br />0</div>,
-                <div key="follower">브라움 R<br />0</div>,
+            <div key="twit">post<br />{me.Posts.length}</div>,
+            <div key="followers">following<br />{me.Followings.length}</div>,
+            <div key="follower">follower<br />{me.Followers.length}</div>,
             ]}
         >
             <Card.Meta 
@@ -26,7 +25,7 @@ const UserProfile = () => {
                 title = {me.nickname}
             
             />
-            <Button onClick={onLogOut} loading={isLoggingOut}>로그아웃</Button>
+            <Button onClick={onLogOut} loading={logOutLoading}>로그아웃</Button>
         </Card>
     );
 }

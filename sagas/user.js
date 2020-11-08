@@ -62,6 +62,8 @@ function* signUp() {
     try {
         // const result = yield call(signUpAPI)
         yield delay(1000);
+        // 에러 발생시에 대한 처리
+        // throw new Error('')
         yield put({
             type: SIGN_UP_SUCCESS,
             data : result.data

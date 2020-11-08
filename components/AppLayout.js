@@ -39,7 +39,7 @@ const AppLayout = ({children}) => {
     //리덕스를 사용하기위해서 initialState를 만들었고 이를 컴포넌트에서 사용할 수 있다
     //const [isloggedIn, setIsLoggedIn] = useState(false);
     //redux를 활용
-    const isloggedIn = useSelector((state)=> state.user.isLoggedIn);
+    const { me } = useSelector((state)=> state.user);
 
     return (
         <div>
@@ -63,7 +63,7 @@ const AppLayout = ({children}) => {
                 <Col xs={24} md={6}>
                     {/* setIsLoggedIn usestate를 LoginForm으로 던져준다 */}
                     {/* {isloggedIn ? <UserProfile setIsLoggedIn={setIsLoggedIn}/> : <LoginForm setIsLoggedIn={setIsLoggedIn}/>} */}
-                    {isloggedIn ? <UserProfile /> : <LoginForm />}
+                    {me ? <UserProfile /> : <LoginForm />}
                 </Col>
                 <Col xs={24} md={12}>
                     {children}
