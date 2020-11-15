@@ -30,6 +30,10 @@ export const initialState = {
     addPostLoading: false,
     addPostDone: false,
     addPostError: null,
+
+    addCommentLoading: false,
+    addCommentDone: false,
+    addCommentError: null,
 }
 
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
@@ -41,10 +45,10 @@ export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
 // 동적 액션 크리에이터
-export const addPost = (data) => ({
+/* export const addPost = (data) => ({
     type: ADD_POST_REQUEST,
     data,
-});
+}); */
 
 export const addCommnet = (data) => ({
     type: ADD_COMMENT_REQUEST,
@@ -66,14 +70,16 @@ const dummyPost = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST_REQUEST:
+            console.log("TEST : ADD_POST IS REQUESTED")
             return {
                 ...state,
                 addPostLoading: true,
                 addPostDone: false,
                 addPostError: null,
-            }
+            };
                 
         case ADD_POST_SUCCESS:
+            console.log("TEST : ADD_POST IS SUCCESS")
             return {
                 ...state,
                 mainPosts: [dummyPost, ...state.mainPosts],
@@ -86,7 +92,7 @@ const reducer = (state = initialState, action) => {
                 ... state,
                 addPostLoading: false,
                 addPostError: action.error,
-            }
+            };
 
         // COMMENT ACTION
         case ADD_COMMENT_REQUEST:
@@ -95,7 +101,7 @@ const reducer = (state = initialState, action) => {
                 addCommentLoading: true,
                 addCommentDone: false,
                 addCommentError: null,
-            }
+            };
                 
         case ADD_COMMENT_SUCCESS:
             return {
@@ -109,7 +115,7 @@ const reducer = (state = initialState, action) => {
                 ... state,
                 addCommentLoading: false,
                 addCommentError: action.error,
-            }
+            };
         default:
             return state;
     }
